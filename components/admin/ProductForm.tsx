@@ -111,8 +111,44 @@ export function ProductForm({ product }: { product?: Product }) {
         Show in New Collections
       </label>
       <div>
-        <p className="mb-2 text-sm">Photos (phone gallery or camera)</p>
-        <input type="file" accept="image/*" multiple capture="environment" onChange={(e) => onFiles(e.target.files)} />
+        <p className="mb-2 text-sm">Photos</p>
+        {/* Android treats accept="image/*" as camera-only. File extensions open the gallery. */}
+        <input
+          id="product-photos-gallery"
+          type="file"
+          accept=".jpg,.jpeg,.png,.webp,.heic,.heif,.gif"
+          multiple
+          className="sr-only"
+          onChange={(e) => {
+            void onFiles(e.target.files);
+            e.target.value = "";
+          }}
+        />
+        <input
+          id="product-photos-camera"
+          type="file"
+          accept="image/*"
+          capture="environment"
+          className="sr-only"
+          onChange={(e) => {
+            void onFiles(e.target.files);
+            e.target.value = "";
+          }}
+        />
+        <div className="flex flex-col gap-2 sm:flex-row">
+          <label
+            htmlFor="product-photos-gallery"
+            className="rounded-full bg-rose px-4 py-3 text-center text-sm font-semibold text-white"
+          >
+            Pick from gallery
+          </label>
+          <label
+            htmlFor="product-photos-camera"
+            className="rounded-full border border-rose px-4 py-3 text-center text-sm font-semibold text-rose"
+          >
+            Take photo
+          </label>
+        </div>
         <div className="mt-3 flex flex-wrap gap-2">
           {images.map((src) => (
             <div key={src.slice(0, 40)} className="relative">
