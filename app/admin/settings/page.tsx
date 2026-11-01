@@ -36,6 +36,29 @@ export default function SettingsPage() {
       }}
     >
       <h2 className="text-2xl">Shop settings</h2>
+      <label className="grid gap-1 text-sm">
+        Shop logo
+        <input
+          type="file"
+          accept="image/*"
+          onChange={async (e) => {
+            const file = e.target.files?.[0];
+            if (!file) return;
+            const [url] = await uploadPhotos([file]);
+            set("logo_url", url);
+          }}
+        />
+        <span className="text-xs text-muted">Upload from phone gallery or computer. This replaces the text logo in the header.</span>
+      </label>
+      {form.logo_url && (
+        <div className="flex items-center gap-3">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={form.logo_url} alt="Shop logo" className="h-16 w-auto max-w-[200px] object-contain" />
+          <button type="button" className="text-sm text-red-700" onClick={() => set("logo_url", "")}>
+            Remove logo
+          </button>
+        </div>
+      )}
       {(
         [
           ["brand_name", "Brand name"],

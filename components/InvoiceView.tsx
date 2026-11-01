@@ -14,7 +14,12 @@ export function InvoiceView({
   return (
     <div className={`${wrap} mx-auto border border-black/10`}>
       <div className="text-center">
-        <p className="logo-type text-2xl font-semibold tracking-[0.2em]">{settings.brand_name}</p>
+        {settings.logo_url ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={settings.logo_url} alt={settings.brand_name} className="mx-auto mb-2 h-14 w-auto object-contain" />
+        ) : (
+          <p className="logo-type text-2xl font-semibold tracking-[0.2em]">{settings.brand_name}</p>
+        )}
         <p className="mt-1 text-sm">{settings.address}</p>
         <p className="text-sm">Ph: {settings.phone}</p>
       </div>

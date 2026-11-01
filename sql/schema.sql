@@ -6,6 +6,7 @@ create table if not exists public.settings (
   instagram text not null default '',
   upi_id text not null default '',
   upi_qr_url text not null default '',
+  logo_url text not null default '',
   address text not null default '',
   bill_footer text not null default '',
   map_embed_url text not null default '',

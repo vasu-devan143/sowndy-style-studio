@@ -160,6 +160,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         instagram: setRes.data.instagram,
         upi_id: setRes.data.upi_id,
         upi_qr_url: setRes.data.upi_qr_url ?? "",
+        logo_url: setRes.data.logo_url ?? "",
         address: setRes.data.address,
         bill_footer: setRes.data.bill_footer,
         map_embed_url: setRes.data.map_embed_url ?? "",

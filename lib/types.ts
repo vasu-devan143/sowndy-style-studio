@@ -52,6 +52,7 @@ export type ShopSettings = {
   instagram: string;
   upi_id: string;
   upi_qr_url: string;
+  logo_url: string;
   address: string;
   bill_footer: string;
   map_embed_url: string;

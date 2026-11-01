@@ -8,6 +8,7 @@ export const defaultSettings: ShopSettings = {
   instagram: BRAND.instagram,
   upi_id: BRAND.upiId,
   upi_qr_url: "",
+  logo_url: "",
   address: BRAND.address,
   bill_footer: BRAND.billFooter,
   map_embed_url: BRAND.mapEmbedUrl,
