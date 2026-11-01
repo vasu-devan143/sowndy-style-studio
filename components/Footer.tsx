@@ -31,8 +31,8 @@ export function Footer() {
           <a href={settings.instagram} className="text-rose underline" target="_blank" rel="noreferrer">
             Instagram
           </a>
-          <p className="mt-4 text-xs text-muted">
-            {isAdmin ? (
+          {isAdmin && (
+            <p className="mt-4 text-xs">
               <button
                 type="button"
                 className="font-semibold text-rose"
@@ -43,10 +43,8 @@ export function Footer() {
               >
                 வெளியேறு / Log out
               </button>
-            ) : (
-              <Link href="/admin">Owner login</Link>
-            )}
-          </p>
+            </p>
+          )}
         </div>
       </div>
     </footer>
