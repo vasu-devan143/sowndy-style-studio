@@ -72,7 +72,7 @@ export function Header() {
               {link.label}
             </Link>
           ))}
-          {isAdmin ? (
+          {isAdmin && (
             <>
               <Link href="/admin" className="rounded-xl px-3 py-3 text-sm font-semibold text-rose" onClick={() => setOpen(false)}>
                 Shop desk
@@ -81,10 +81,6 @@ export function Header() {
                 வெளியேறு / Log out
               </button>
             </>
-          ) : (
-            <Link href="/admin" className="rounded-xl px-3 py-3 text-sm text-muted" onClick={() => setOpen(false)}>
-              Owner login
-            </Link>
           )}
         </nav>
       )}
