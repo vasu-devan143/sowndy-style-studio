@@ -35,6 +35,7 @@ export default function ProductPage() {
             src={product.images[photo] ?? product.images[0]}
             alt={product.name}
             className="aspect-[3/4] w-full object-cover"
+            controls
           />
         </div>
         {product.images.length > 1 && (

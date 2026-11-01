@@ -9,6 +9,7 @@ import {
   useState,
 } from "react";
 import { blobToDataUrl, compressImage } from "./image-compress";
+import { fileExtension, isVideoFile } from "./media";
 import { defaultSettings, seedProducts, seedSales } from "./seed-data";
 import { getSupabase, isSupabaseConfigured } from "./supabase/client";
 import type { PaymentMode, Product, Sale, SaleItem, ShopSettings } from "./types";
@@ -180,15 +181,17 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     const urls: string[] = [];
     const supabase = getSupabase();
     for (const file of files) {
-      const compressed = await compressImage(file);
+      const video = isVideoFile(file);
+      const body = video ? file : await compressImage(file);
       if (usingDemo || !supabase) {
-        urls.push(await blobToDataUrl(compressed));
+        urls.push(await blobToDataUrl(body));
         continue;
       }
-      const path = `${crypto.randomUUID()}.jpg`;
-      const { error: upErr } = await supabase.storage
-        .from("product-images")
-        .upload(path, compressed, { contentType: "image/jpeg", upsert: false });
+      const path = `${crypto.randomUUID()}.${video ? fileExtension(file) : "jpg"}`;
+      const { error: upErr } = await supabase.storage.from("product-images").upload(path, body, {
+        contentType: video ? file.type || "video/mp4" : "image/jpeg",
+        upsert: false,
+      });
       if (upErr) throw upErr;
       const { data } = supabase.storage.from("product-images").getPublicUrl(path);
       urls.push(data.publicUrl);

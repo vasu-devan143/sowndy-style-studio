@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SafeImage } from "@/components/SafeImage";
 import { CATEGORIES } from "@/lib/brand";
+import { isVideoFile, videoDurationSeconds } from "@/lib/media";
 import { useStore } from "@/lib/store";
 import type { CategorySlug, Product } from "@/lib/types";
 
@@ -28,7 +29,19 @@ export function ProductForm({ product }: { product?: Product }) {
     setBusy(true);
     setError("");
     try {
-      const urls = await uploadPhotos(Array.from(files));
+      const list = Array.from(files);
+      for (const file of list) {
+        if (isVideoFile(file)) {
+          if (file.size > 40 * 1024 * 1024) {
+            throw new Error("Video is too large. Please use a clip under about 40 MB.");
+          }
+          const seconds = await videoDurationSeconds(file);
+          if (seconds > 12) {
+            throw new Error("Please use a short video, about 10 seconds or less.");
+          }
+        }
+      }
+      const urls = await uploadPhotos(list);
       setImages((prev) => [...prev, ...urls]);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Photo upload failed");
@@ -111,12 +124,12 @@ export function ProductForm({ product }: { product?: Product }) {
         Show in New Collections
       </label>
       <div>
-        <p className="mb-2 text-sm">Photos</p>
+        <p className="mb-2 text-sm">Photos and short videos (about 10 seconds)</p>
         {/* Android treats accept="image/*" as camera-only. File extensions open the gallery. */}
         <input
           id="product-photos-gallery"
           type="file"
-          accept=".jpg,.jpeg,.png,.webp,.heic,.heif,.gif"
+          accept=".jpg,.jpeg,.png,.webp,.heic,.heif,.gif,.mp4,.mov,.webm,.m4v"
           multiple
           className="sr-only"
           onChange={(e) => {
@@ -135,6 +148,16 @@ export function ProductForm({ product }: { product?: Product }) {
             e.target.value = "";
           }}
         />
+        <input
+          id="product-photos-video"
+          type="file"
+          accept=".mp4,.mov,.webm,.m4v"
+          className="sr-only"
+          onChange={(e) => {
+            void onFiles(e.target.files);
+            e.target.value = "";
+          }}
+        />
         <div className="flex flex-col gap-2 sm:flex-row">
           <label
             htmlFor="product-photos-gallery"
@@ -147,6 +170,12 @@ export function ProductForm({ product }: { product?: Product }) {
             className="rounded-full border border-rose px-4 py-3 text-center text-sm font-semibold text-rose"
           >
             Take photo
+          </label>
+          <label
+            htmlFor="product-photos-video"
+            className="rounded-full border border-rose px-4 py-3 text-center text-sm font-semibold text-rose"
+          >
+            Add video
           </label>
         </div>
         <div className="mt-3 flex flex-wrap gap-2">
