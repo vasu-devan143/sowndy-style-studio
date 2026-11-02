@@ -57,7 +57,7 @@ export function ProductSearch() {
         <input
           id="product-search"
           className="h-8 min-w-0 flex-1 rounded-full border border-gold/40 bg-white px-3 text-xs md:h-9 md:text-sm"
-          placeholder="Name or coupon"
+          placeholder="product code"
           value={q}
           onChange={(e) => {
             setQ(e.target.value);
