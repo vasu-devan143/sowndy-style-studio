@@ -48,7 +48,7 @@ export function Header() {
             href="/"
             onClick={() => setOpen(false)}
             aria-label={settings.brand_name}
-            className="flex items-center justify-center gap-4"
+            className="flex items-center justify-center gap-6"
           >
             {settings.logo_url ? (
               <span className="brand-beside-logo text-right">
