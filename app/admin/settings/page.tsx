@@ -65,6 +65,7 @@ export default function SettingsPage() {
           ["phone", "Phone"],
           ["whatsapp", "WhatsApp number with country code"],
           ["instagram", "Instagram link"],
+          ["youtube", "YouTube link"],
           ["upi_id", "UPI ID"],
           ["address", "Address"],
           ["bill_footer", "Text at the bottom of the bill"],

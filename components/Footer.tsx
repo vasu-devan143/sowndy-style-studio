@@ -28,9 +28,18 @@ export function Footer() {
         <div className="text-sm">
           <p>Phone: {settings.phone}</p>
           <p>WhatsApp: {settings.whatsapp}</p>
-          <a href={settings.instagram} className="text-rose underline" target="_blank" rel="noreferrer">
-            Instagram
-          </a>
+          <div className="mt-1 grid gap-1">
+            {settings.instagram && (
+              <a href={settings.instagram} className="text-rose underline" target="_blank" rel="noreferrer">
+                Instagram
+              </a>
+            )}
+            {settings.youtube && (
+              <a href={settings.youtube} className="text-rose underline" target="_blank" rel="noreferrer">
+                YouTube
+              </a>
+            )}
+          </div>
           {isAdmin && (
             <p className="mt-4 text-xs">
               <button

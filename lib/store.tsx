@@ -159,6 +159,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         phone: setRes.data.phone,
         whatsapp: setRes.data.whatsapp,
         instagram: setRes.data.instagram,
+        youtube: setRes.data.youtube ?? "",
         upi_id: setRes.data.upi_id,
         upi_qr_url: setRes.data.upi_qr_url ?? "",
         logo_url: setRes.data.logo_url ?? "",

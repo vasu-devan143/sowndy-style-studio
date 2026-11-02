@@ -5,6 +5,7 @@ export const BRAND = {
   phone: "9000000000",
   whatsapp: "919000000000",
   instagram: "https://instagram.com/sowndystylestudio",
+  youtube: "",
   upiId: "sowndy@upi",
   address: "Your shop street, City, Tamil Nadu, PIN",
   billFooter: "Thank you for shopping with SOWNDY STYLE STUDIO. Exchange within 3 days with bill.",

@@ -84,14 +84,26 @@ export default function ProductPage() {
             >
               Order on WhatsApp
             </a>
-            <a
-              href={settings.instagram}
-              className="rounded-full border px-5 py-3 text-center font-semibold"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Message us on Instagram
-            </a>
+            {settings.instagram && (
+              <a
+                href={settings.instagram}
+                className="rounded-full border px-5 py-3 text-center font-semibold"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Message us on Instagram
+              </a>
+            )}
+            {settings.youtube && (
+              <a
+                href={settings.youtube}
+                className="rounded-full border px-5 py-3 text-center font-semibold"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Watch on YouTube
+              </a>
+            )}
             <PaymentBox amount={product.price} note={product.name} />
           </>
         )}

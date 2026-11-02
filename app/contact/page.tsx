@@ -23,14 +23,26 @@ export default function ContactPage() {
           <a href={`tel:${settings.phone}`} className="rounded-full border border-rose px-4 py-3 text-center font-semibold text-rose">
             Call us
           </a>
-          <a
-            href={settings.instagram}
-            className="rounded-full border px-4 py-3 text-center font-semibold"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Instagram
-          </a>
+          {settings.instagram && (
+            <a
+              href={settings.instagram}
+              className="rounded-full border px-4 py-3 text-center font-semibold"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Instagram
+            </a>
+          )}
+          {settings.youtube && (
+            <a
+              href={settings.youtube}
+              className="rounded-full border px-4 py-3 text-center font-semibold"
+              target="_blank"
+              rel="noreferrer"
+            >
+              YouTube
+            </a>
+          )}
         </div>
       </section>
       <section className="overflow-hidden rounded-2xl bg-white shadow-sm">

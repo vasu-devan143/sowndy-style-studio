@@ -50,6 +50,7 @@ export type ShopSettings = {
   phone: string;
   whatsapp: string;
   instagram: string;
+  youtube: string;
   upi_id: string;
   upi_qr_url: string;
   logo_url: string;

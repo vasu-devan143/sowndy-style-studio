@@ -6,6 +6,7 @@ export const defaultSettings: ShopSettings = {
   phone: BRAND.phone,
   whatsapp: BRAND.whatsapp,
   instagram: BRAND.instagram,
+  youtube: BRAND.youtube,
   upi_id: BRAND.upiId,
   upi_qr_url: "",
   logo_url: "",
