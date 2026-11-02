@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { CATEGORIES } from "@/lib/brand";
+import { SHOP_CATEGORIES } from "@/lib/brand";
 import { waLink } from "@/lib/format";
 import { useStore } from "@/lib/store";
 import { supabaseSetupHint } from "@/lib/supabase/client";
@@ -56,8 +56,8 @@ export default function HomePage() {
 
       <section>
         <h2 className="mb-4 text-3xl">Shop by category</h2>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {CATEGORIES.map((cat) => {
+        <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+          {SHOP_CATEGORIES.map((cat) => {
             const cover = products.find((p) => p.category === cat.slug);
             return (
               <Link key={cat.slug} href={cat.href} className="overflow-hidden rounded-2xl bg-white shadow-sm">

@@ -17,7 +17,7 @@ create table if not exists public.settings (
 create table if not exists public.products (
   id uuid primary key default gen_random_uuid(),
   name text not null,
-  category text not null check (category in ('saree', 'chudidar', 'saree-pre-pleating', 'jewelry')),
+  category text not null check (category in ('saree', 'saree-dhoti', 'chudidar', 'saree-pre-pleating', 'jewelry')),
   price numeric not null default 0,
   description text not null default '',
   fabric text not null default '',

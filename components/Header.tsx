@@ -65,7 +65,7 @@ export function Header() {
             Menu
           </button>
         </div>
-        <nav className="mt-3 hidden items-center justify-center gap-5 text-sm font-medium md:flex">
+        <nav className="mt-3 hidden flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm font-medium md:flex">
           {NAV_LINKS.map((link) => (
             <Link key={link.href} href={link.href} className="text-ink/80 hover:text-rose">
               {link.label}
