@@ -455,8 +455,26 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         await refresh();
         return;
       }
-      const { error: err } = await getSupabase()!.from("settings").update(next).eq("id", 1);
-      if (err) throw err;
+      const payload = {
+        brand_name: next.brand_name ?? "",
+        phone: next.phone ?? "",
+        whatsapp: next.whatsapp ?? "",
+        instagram: next.instagram ?? "",
+        youtube: next.youtube ?? "",
+        upi_id: next.upi_id ?? "",
+        upi_qr_url: next.upi_qr_url ?? "",
+        logo_url: next.logo_url ?? "",
+        address: next.address ?? "",
+        bill_footer: next.bill_footer ?? "",
+        map_embed_url: next.map_embed_url ?? "",
+      };
+      const supabase = getSupabase()!;
+      let { error: err } = await supabase.from("settings").upsert({ id: 1, ...payload });
+      if (err && /youtube|logo_url|schema cache|column/i.test(err.message)) {
+        const { youtube: _yt, logo_url: _logo, ...core } = payload;
+        ({ error: err } = await supabase.from("settings").upsert({ id: 1, ...core }));
+      }
+      if (err) throw new Error(err.message);
       await refresh();
     },
     [refresh, usingDemo],
