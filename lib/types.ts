@@ -76,7 +76,7 @@ export function stockStatus(qty: number): StockStatus {
 
 export function categoryLabel(slug: CategorySlug) {
   if (slug === "saree") return "Sarees";
-  if (slug === "chudidar") return "சுடிதார்";
+  if (slug === "chudidar") return "Chudithar";
   if (slug === "jewelry") return "Jewelry";
   return "Saree Pre-Pleating";
 }

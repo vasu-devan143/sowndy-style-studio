@@ -35,7 +35,7 @@ export default function HomePage() {
           <p className="text-sm tracking-[0.25em] text-gold uppercase">Women&apos;s ethnic wear</p>
           <h1 className="text-4xl leading-tight md:text-5xl">{settings.brand_name}</h1>
           <p className="text-muted">
-            Sarees, சுடிதார், ready-to-wear pre-pleated sarees, and jewelry. See a piece you love?
+            Sarees, Chudithar, ready-to-wear pre-pleated sarees, and jewelry. See a piece you love?
             Add it to your bag and order on WhatsApp.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row">

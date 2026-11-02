@@ -77,11 +77,11 @@ export const seedProducts: Product[] = [
   },
   {
     id: "p4",
-    name: "Anarkali Chudidar Set — Mint",
+    name: "Anarkali Chudithar Set — Mint",
     category: "chudidar",
     price: 2490,
     description:
-      "Flowy mint Anarkali with matching chudidar and dupatta. Comfortable georgette, nice for family functions.",
+      "Flowy mint Anarkali with matching Chudithar and dupatta. Comfortable georgette, nice for family functions.",
     fabric: "Georgette",
     color: "Mint green",
     sizes: "S, M, L, XL",
@@ -96,7 +96,7 @@ export const seedProducts: Product[] = [
   },
   {
     id: "p5",
-    name: "Soft Silk Chudidar — Peach",
+    name: "Soft Silk Chudithar — Peach",
     category: "chudidar",
     price: 1690,
     description:

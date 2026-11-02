@@ -15,7 +15,7 @@ export const BRAND = {
 
 export const SHOP_CATEGORIES = [
   { slug: "saree", label: "Sarees", href: "/sarees" },
-  { slug: "chudidar", label: "சுடிதார்", href: "/chudidar" },
+  { slug: "chudidar", label: "Chudithar", href: "/chudidar" },
   {
     slug: "saree-pre-pleating",
     label: "Saree Pre-Pleating",
@@ -31,7 +31,7 @@ export type CategorySlug = (typeof CATEGORIES)[number]["slug"];
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/sarees", label: "Sarees" },
-  { href: "/chudidar", label: "சுடிதார்" },
+  { href: "/chudidar", label: "Chudithar" },
   { href: "/saree-pre-pleating", label: "Saree Pre-Pleating" },
   { href: "/jewelry", label: "Jewelry" },
   { href: "/new-collections", label: "New Collections" },
