@@ -1,5 +1,6 @@
 "use client";
 
+import { PublicSocialLinks } from "@/components/PublicSocialLinks";
 import { waLink } from "@/lib/format";
 import { useStore } from "@/lib/store";
 
@@ -23,26 +24,7 @@ export default function ContactPage() {
           <a href={`tel:${settings.phone}`} className="rounded-full border border-rose px-4 py-3 text-center font-semibold text-rose">
             Call us
           </a>
-          {settings.instagram && (
-            <a
-              href={settings.instagram}
-              className="rounded-full border px-4 py-3 text-center font-semibold"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Instagram
-            </a>
-          )}
-          {settings.youtube && (
-            <a
-              href={settings.youtube}
-              className="rounded-full border px-4 py-3 text-center font-semibold"
-              target="_blank"
-              rel="noreferrer"
-            >
-              YouTube
-            </a>
-          )}
+          <PublicSocialLinks />
         </div>
       </section>
       <section className="overflow-hidden rounded-2xl bg-white shadow-sm">

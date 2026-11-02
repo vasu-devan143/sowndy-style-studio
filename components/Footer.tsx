@@ -6,6 +6,7 @@ import { NAV_LINKS } from "@/lib/brand";
 import { useAuth } from "@/lib/auth";
 import { useStore } from "@/lib/store";
 import { Logo } from "./Logo";
+import { PublicSocialLinks } from "./PublicSocialLinks";
 
 export function Footer() {
   const { settings } = useStore();
@@ -28,18 +29,7 @@ export function Footer() {
         <div className="text-sm">
           <p>Phone: {settings.phone}</p>
           <p>WhatsApp: {settings.whatsapp}</p>
-          <div className="mt-1 grid gap-1">
-            {settings.instagram && (
-              <a href={settings.instagram} className="text-rose underline" target="_blank" rel="noreferrer">
-                Instagram
-              </a>
-            )}
-            {settings.youtube && (
-              <a href={settings.youtube} className="text-rose underline" target="_blank" rel="noreferrer">
-                YouTube
-              </a>
-            )}
-          </div>
+          <PublicSocialLinks className="mt-3 grid gap-2 pb-16 md:pb-0" />
           {isAdmin && (
             <p className="mt-4 text-xs">
               <button

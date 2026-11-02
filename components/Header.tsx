@@ -9,6 +9,7 @@ import { useCart } from "@/lib/cart";
 import { useStore } from "@/lib/store";
 import { CouponBox } from "./CouponBox";
 import { Logo } from "./Logo";
+import { PublicSocialLinks } from "./PublicSocialLinks";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -86,6 +87,10 @@ export function Header() {
               {link.label}
             </Link>
           ))}
+          <PublicSocialLinks
+            className="mt-2 grid gap-2"
+            linkClassName="rounded-xl px-3 py-3 text-base font-semibold text-rose hover:bg-cream-dark"
+          />
           {isAdmin && (
             <>
               <Link href="/admin" className="rounded-xl px-3 py-3 text-sm font-semibold text-rose" onClick={() => setOpen(false)}>

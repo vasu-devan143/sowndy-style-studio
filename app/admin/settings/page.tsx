@@ -64,8 +64,8 @@ export default function SettingsPage() {
           ["brand_name", "Brand name"],
           ["phone", "Phone"],
           ["whatsapp", "WhatsApp number with country code (example: 91XXXXXXXXXX)"],
-          ["instagram", "Instagram link"],
-          ["youtube", "YouTube link"],
+          ["instagram", "Instagram page link"],
+          ["youtube", "YouTube page link"],
           ["upi_id", "UPI ID"],
           ["address", "Address"],
           ["bill_footer", "Text at the bottom of the bill"],
@@ -82,6 +82,11 @@ export default function SettingsPage() {
           {key === "whatsapp" ? (
             <span className="text-xs text-muted">
               Customer Order on WhatsApp buttons use this number. Include country code, without spaces.
+            </span>
+          ) : null}
+          {key === "instagram" || key === "youtube" ? (
+            <span className="text-xs text-muted">
+              Shown to visitors on phones and computers. Paste the full https link to your page.
             </span>
           ) : null}
         </label>
