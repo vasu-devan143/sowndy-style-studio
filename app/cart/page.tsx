@@ -17,13 +17,13 @@ import {
   type CheckoutPayMethod,
   type DeliveryDetails,
 } from "@/lib/checkout";
-import { gpayLink, inr, nextInvoiceNumber, phonepeLink, upiLink, waLink } from "@/lib/format";
+import { gpayLink, inr, phonepeLink, upiLink, waLink } from "@/lib/format";
 import { useStore } from "@/lib/store";
 import type { Sale } from "@/lib/types";
 
 export default function CartPage() {
   const { lines, setQty, remove, subtotal, clear } = useCart();
-  const { settings, recordSale, products, sales } = useStore();
+  const { settings, recordSale, placeWebsiteOrder, products, usingDemo } = useStore();
   const { isAdmin } = useAuth();
   const [delivery, setDelivery] = useState<DeliveryDetails>(emptyDelivery);
   const [method, setMethod] = useState<CheckoutPayMethod>("upi");
@@ -54,28 +54,6 @@ export default function CartPage() {
     return `Hi ${settings.brand_name}, I want to order:\n${items}\nTotal: ${inr(total)}\n\n${notes}`;
   }, [lines, notes, settings.brand_name, total]);
 
-  const localBill = (): Sale => ({
-    id: crypto.randomUUID(),
-    invoice_number: nextInvoiceNumber(sales.map((s) => s.invoice_number)),
-    customer_name: delivery.name.trim() || "Website order",
-    customer_phone: delivery.phone.trim(),
-    discount: 0,
-    payment_mode: mode,
-    subtotal,
-    total,
-    notes,
-    created_at: new Date().toISOString(),
-    items: lines.map((l) => ({
-      id: crypto.randomUUID(),
-      sale_id: "bag",
-      product_id: l.productId,
-      product_name: l.name,
-      quantity: l.quantity,
-      unit_price: l.price,
-      line_total: l.price * l.quantity,
-    })),
-  });
-
   const makeBill = async () => {
     setError("");
     const problem = validateDelivery(delivery);
@@ -86,19 +64,18 @@ export default function CartPage() {
     if (!lines.length) return false;
     setSaving(true);
     try {
-      if (isAdmin) {
-        const sale = await recordSale({
-          customer_name: delivery.name.trim() || "Website order",
-          customer_phone: delivery.phone.trim(),
-          discount: 0,
-          payment_mode: mode,
-          notes,
-          items: lines.map((l) => ({ product_id: l.productId, quantity: l.quantity })),
-        });
-        setBill(sale);
-      } else {
-        setBill(localBill());
-      }
+      const order = {
+        customer_name: delivery.name.trim() || "Website order",
+        customer_phone: delivery.phone.trim(),
+        payment_mode: mode,
+        notes,
+        items: lines.map((l) => ({ product_id: l.productId, quantity: l.quantity })),
+      };
+      const sale =
+        isAdmin || usingDemo
+          ? await recordSale({ ...order, discount: 0 })
+          : await placeWebsiteOrder(order);
+      setBill(sale);
       clear();
       return true;
     } catch (err) {
@@ -186,7 +163,7 @@ export default function CartPage() {
         <h1 className="text-3xl">Checkout</h1>
         {lines.map((line) => {
           const product = products.find((p) => p.id === line.productId);
-          const max = product ? Math.max(1, product.stock_quantity) : 99;
+          const max = product ? Math.max(0, product.stock_quantity) : 99;
           return (
             <div key={line.productId} className="flex gap-3 rounded-2xl bg-white p-3">
               <SafeImage src={line.image} alt="" className="h-24 w-20 rounded-xl object-cover" />

@@ -47,6 +47,13 @@ type StoreContextValue = {
     notes: string;
     items: { product_id: string; quantity: number }[];
   }) => Promise<Sale>;
+  placeWebsiteOrder: (input: {
+    customer_name: string;
+    customer_phone: string;
+    payment_mode: PaymentMode;
+    notes: string;
+    items: { product_id: string; quantity: number }[];
+  }) => Promise<Sale>;
   saveSettings: (next: ShopSettings) => Promise<void>;
 };
 
@@ -455,6 +462,84 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     [products, refresh, sales, usingDemo],
   );
 
+  const placeWebsiteOrder = useCallback(
+    async (input: {
+      customer_name: string;
+      customer_phone: string;
+      payment_mode: PaymentMode;
+      notes: string;
+      items: { product_id: string; quantity: number }[];
+    }) => {
+      if (usingDemo) {
+        return recordSale({ ...input, discount: 0 });
+      }
+      const supabase = getSupabase();
+      if (!supabase) {
+        throw new Error("Shop database is not connected.");
+      }
+      const { data, error: err } = await supabase.rpc("complete_website_checkout", {
+        p_customer_name: input.customer_name,
+        p_customer_phone: input.customer_phone,
+        p_payment_mode: input.payment_mode,
+        p_notes: input.notes,
+        p_items: input.items,
+      });
+      if (err) {
+        if (/sold out/i.test(err.message)) {
+          throw new Error("This item just sold out.");
+        }
+        if (/function|schema cache|does not exist|pgrst202/i.test(err.message)) {
+          throw new Error(
+            "Automatic stock update is not set up yet. In Supabase SQL Editor, run sql/complete-website-checkout.sql once.",
+          );
+        }
+        throw new Error(err.message);
+      }
+      await refresh();
+      const row = data as {
+        id: string;
+        invoice_number: string;
+        customer_name: string;
+        customer_phone: string;
+        discount: number;
+        payment_mode: PaymentMode;
+        subtotal: number;
+        total: number;
+        notes: string;
+        created_at: string;
+        items: {
+          product_id: string;
+          product_name: string;
+          quantity: number;
+          unit_price: number;
+          line_total: number;
+        }[];
+      };
+      return {
+        id: String(row.id),
+        invoice_number: String(row.invoice_number),
+        customer_name: String(row.customer_name),
+        customer_phone: String(row.customer_phone),
+        discount: Number(row.discount ?? 0),
+        payment_mode: row.payment_mode,
+        subtotal: Number(row.subtotal),
+        total: Number(row.total),
+        notes: String(row.notes ?? ""),
+        created_at: String(row.created_at),
+        items: (row.items ?? []).map((it, i) => ({
+          id: String(i),
+          sale_id: String(row.id),
+          product_id: String(it.product_id),
+          product_name: String(it.product_name),
+          quantity: Number(it.quantity),
+          unit_price: Number(it.unit_price),
+          line_total: Number(it.line_total),
+        })),
+      };
+    },
+    [recordSale, refresh, usingDemo],
+  );
+
   const saveSettings = useCallback(
     async (next: ShopSettings) => {
       if (usingDemo) {
@@ -503,6 +588,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       deleteProduct,
       setStock,
       recordSale,
+      placeWebsiteOrder,
       saveSettings,
     }),
     [
@@ -518,6 +604,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       deleteProduct,
       setStock,
       recordSale,
+      placeWebsiteOrder,
       saveSettings,
     ],
   );
