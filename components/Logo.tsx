@@ -13,6 +13,8 @@ export function Logo({ className = "" }: { className?: string }) {
     return (
       <span className="logo-frame">
         {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/payments/logo-leaves.svg" alt="" className="logo-leaves" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={settings.logo_url}
           alt={name}
