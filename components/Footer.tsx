@@ -7,6 +7,7 @@ import { useAuth } from "@/lib/auth";
 import { useStore } from "@/lib/store";
 import { Logo } from "./Logo";
 import { PublicContactLinks } from "./PublicContactLinks";
+import { WeAccept } from "./WeAccept";
 
 export function Footer() {
   const { settings } = useStore();
@@ -27,7 +28,8 @@ export function Footer() {
           ))}
         </div>
         <div className="text-sm">
-          <PublicContactLinks className="grid gap-2 pb-16 md:pb-0" />
+          <PublicContactLinks className="grid gap-2" />
+          <WeAccept />
           {isAdmin && (
             <p className="mt-4 text-xs">
               <button

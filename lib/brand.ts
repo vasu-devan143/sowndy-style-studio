@@ -35,5 +35,6 @@ export const NAV_LINKS = [
   { href: "/saree-pre-pleating", label: "Saree Pre-Pleating" },
   { href: "/jewelry", label: "Jewelry" },
   { href: "/new-collections", label: "New Collections" },
+  { href: "/wishlist", label: "My Wishlist" },
   { href: "/contact", label: "Contact" },
 ] as const;

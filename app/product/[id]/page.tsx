@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useMemo, useState } from "react";
+import { HeartButton } from "@/components/HeartButton";
 import { PaymentBox } from "@/components/PaymentBox";
 import { SafeImage } from "@/components/SafeImage";
 import { StockBadge } from "@/components/StockBadge";
@@ -49,7 +50,10 @@ export default function ProductPage() {
       </div>
       <div className="grid gap-4">
         <StockBadge qty={product.stock_quantity} />
-        <h1 className="text-4xl">{product.name}</h1>
+        <div className="flex items-start justify-between gap-3">
+          <h1 className="text-4xl">{product.name}</h1>
+          <HeartButton productId={product.id} className="mt-1 text-2xl text-rose" />
+        </div>
         <p className="text-2xl font-semibold text-rose">{inr(product.price)}</p>
         <p className="text-muted">{product.description}</p>
         <ul className="text-sm">

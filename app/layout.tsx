@@ -7,6 +7,7 @@ import { AuthProvider } from "@/lib/auth";
 import { BRAND } from "@/lib/brand";
 import { CartProvider } from "@/lib/cart";
 import { StoreProvider } from "@/lib/store";
+import { WishlistProvider } from "@/lib/wishlist";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -40,10 +41,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <AuthProvider>
           <StoreProvider>
             <CartProvider>
-              <Header />
-              <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-6 pb-24">{children}</main>
-              <Footer />
-              <WhatsAppFloat />
+              <WishlistProvider>
+                <Header />
+                <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-6 pb-24">{children}</main>
+                <Footer />
+                <WhatsAppFloat />
+              </WishlistProvider>
             </CartProvider>
           </StoreProvider>
         </AuthProvider>

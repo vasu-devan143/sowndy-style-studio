@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" aria-label="PhonePe">
+  <rect width="40" height="40" rx="9" fill="#5F259F"/>
+  <path fill="#fff" d="M12.5 10.5h8.4c4.6 0 7.6 2.6 7.6 6.7 0 4.2-3.1 6.9-7.8 6.9h-4.3V29.5h-3.9V10.5zm3.9 3.3v7.2h4.1c2.5 0 4-1.4 4-3.6s-1.5-3.6-4.1-3.6h-4z"/>
+  <circle cx="28.5" cy="28.2" r="3.3" fill="#FBC02D"/>
+</svg>
