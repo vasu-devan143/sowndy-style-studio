@@ -18,7 +18,7 @@ export function Logo({ className = "" }: { className?: string }) {
         <img
           src={settings.logo_url}
           alt={name}
-          className={`relative z-[1] w-auto object-contain ${className || "h-8 max-w-[140px]"}`}
+          className={`logo-photo relative z-[1] w-auto object-contain ${className || "h-8 max-w-[140px]"}`}
         />
       </span>
     );

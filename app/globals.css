@@ -65,6 +65,10 @@ h3,
   pointer-events: none;
 }
 
+.logo-photo {
+  mix-blend-mode: multiply;
+}
+
 @media print {
   .no-print {
     display: none !important;
