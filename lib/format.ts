@@ -19,15 +19,28 @@ export function waLink(whatsapp: string, message: string) {
   return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 }
 
-export function upiLink(upiId: string, payeeName: string, amount: number, note: string) {
-  const params = new URLSearchParams({
+export function upiPayParams(upiId: string, payeeName: string, amount: number, note: string) {
+  return new URLSearchParams({
     pa: upiId,
     pn: payeeName,
     am: String(amount),
     cu: "INR",
     tn: note.slice(0, 50),
   });
-  return `upi://pay?${params.toString()}`;
+}
+
+export function upiLink(upiId: string, payeeName: string, amount: number, note: string) {
+  return `upi://pay?${upiPayParams(upiId, payeeName, amount, note).toString()}`;
+}
+
+export function gpayLink(upiId: string, payeeName: string, amount: number, note: string) {
+  const q = upiPayParams(upiId, payeeName, amount, note).toString();
+  return `tez://upi/pay?${q}`;
+}
+
+export function phonepeLink(upiId: string, payeeName: string, amount: number, note: string) {
+  const q = upiPayParams(upiId, payeeName, amount, note).toString();
+  return `phonepe://pay?${q}`;
 }
 
 export function prettyDate(iso: string) {

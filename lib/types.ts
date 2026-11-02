@@ -4,7 +4,7 @@ export type { CategorySlug };
 
 export type StockStatus = "available" | "few_left" | "sold_out";
 
-export type PaymentMode = "UPI" | "Cash" | "Card" | "Bank Transfer";
+export type PaymentMode = "UPI" | "GPay" | "PhonePe" | "RuPay" | "Visa" | "Card" | "Cash" | "Bank Transfer";
 
 export type Product = {
   id: string;

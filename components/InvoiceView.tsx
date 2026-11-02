@@ -68,6 +68,7 @@ export function InvoiceView({
           <span>{inr(sale.total)}</span>
         </p>
         <p>Paid by: {sale.payment_mode}</p>
+        {sale.notes ? <p className="mt-2 whitespace-pre-wrap text-left">{sale.notes}</p> : null}
       </div>
       <p className="mt-6 text-center text-sm">{settings.bill_footer}</p>
       <p className="mt-2 text-center text-xs">Thank you</p>
