@@ -250,17 +250,32 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         coupon_code: coupon,
       };
 
-      let productId = id;
-      if (id) {
-        const { error: err } = await supabase.from("products").update(payload).eq("id", id);
-        if (err) throw err;
-        if (input.images) {
-          await supabase.from("product_images").delete().eq("product_id", id);
+      const writeProduct = async (body: Record<string, unknown>) => {
+        if (id) {
+          const { error: err } = await supabase.from("products").update(body).eq("id", id);
+          return { data: { id }, error: err };
         }
-      } else {
-        const { data, error: err } = await supabase.from("products").insert(payload).select("id").single();
-        if (err) throw err;
-        productId = data.id as string;
+        return supabase.from("products").insert(body).select("id").single();
+      };
+
+      let { data, error: err } = await writeProduct(payload);
+      if (err && /original_price|coupon_code|schema cache|column/i.test(err.message)) {
+        const { original_price: _op, coupon_code: _cc, ...core } = payload;
+        ({ data, error: err } = await writeProduct(core));
+      }
+      if (err && /category|check constraint/i.test(err.message)) {
+        throw new Error(
+          "This category is not allowed in the database yet. In Supabase SQL Editor, run sql/fix-product-save.sql once.",
+        );
+      }
+      if (err) throw new Error(err.message);
+
+      const productId = id ?? String(data?.id ?? "");
+      if (!productId) throw new Error("Could not save product");
+
+      if (id && input.images) {
+        const { error: delErr } = await supabase.from("product_images").delete().eq("product_id", id);
+        if (delErr) throw new Error(delErr.message);
       }
 
       if (input.images && productId) {
@@ -271,23 +286,17 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         }));
         if (rows.length) {
           const { error: imgErr } = await supabase.from("product_images").insert(rows);
-          if (imgErr) throw imgErr;
+          if (imgErr) throw new Error(imgErr.message);
         }
       }
 
       await refresh();
-      return (await Promise.resolve(
-        loadAfterSave(productId!),
-      )) as Product;
-
-      function loadAfterSave(pid: string) {
-        return {
-          id: pid,
-          ...input,
-          created_at: new Date().toISOString(),
-          images: input.images ?? [],
-        };
-      }
+      return {
+        id: productId,
+        ...input,
+        created_at: new Date().toISOString(),
+        images: input.images ?? [],
+      };
     },
     [products, refresh, usingDemo],
   );

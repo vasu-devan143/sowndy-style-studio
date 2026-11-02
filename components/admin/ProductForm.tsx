@@ -79,7 +79,13 @@ export function ProductForm({ product }: { product?: Product }) {
           );
           router.push("/admin/products");
         } catch (err) {
-          setError(err instanceof Error ? err.message : "Could not save");
+          const msg =
+            err instanceof Error
+              ? err.message
+              : typeof err === "object" && err && "message" in err
+                ? String((err as { message: unknown }).message)
+                : "Could not save";
+          setError(msg || "Could not save");
         } finally {
           setBusy(false);
         }
