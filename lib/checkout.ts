@@ -1,6 +1,6 @@
 import type { PaymentMode } from "./types";
 
-export type CheckoutPayMethod = "upi" | "gpay" | "phonepe" | "rupay" | "visa";
+export type CheckoutPayMethod = "upi" | "gpay" | "phonepe";
 export type DwellingType = "home" | "apartment";
 
 export type DeliveryDetails = {
@@ -55,16 +55,12 @@ export function saveDelivery(details: DeliveryDetails) {
 export function payMethodToMode(method: CheckoutPayMethod): PaymentMode {
   if (method === "gpay") return "GPay";
   if (method === "phonepe") return "PhonePe";
-  if (method === "rupay") return "RuPay";
-  if (method === "visa") return "Visa";
   return "UPI";
 }
 
 export function payMethodLabel(method: CheckoutPayMethod) {
   if (method === "gpay") return "GPay";
   if (method === "phonepe") return "PhonePe";
-  if (method === "rupay") return "RuPay card";
-  if (method === "visa") return "Visa card";
   return "UPI transaction";
 }
 
