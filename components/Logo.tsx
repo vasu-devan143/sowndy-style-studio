@@ -13,12 +13,10 @@ export function Logo({ className = "" }: { className?: string }) {
     return (
       <span className="logo-frame">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/payments/logo-leaves.svg" alt="" className="logo-leaves" />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={settings.logo_url}
           alt={name}
-          className={`logo-photo relative z-[1] w-auto object-contain ${className || "h-8 max-w-[140px]"}`}
+          className={`logo-photo w-auto object-contain ${className || "h-8 max-w-[140px]"}`}
         />
       </span>
     );
