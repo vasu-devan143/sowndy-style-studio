@@ -31,11 +31,10 @@ export function Header() {
             href="/"
             onClick={() => setOpen(false)}
             aria-label={settings.brand_name}
-            className="relative block"
+            className="flex items-center justify-center gap-2 md:gap-4"
           >
-            <Logo className="h-16 max-w-[200px] text-2xl md:h-24 md:max-w-[340px] md:text-4xl" />
             {settings.logo_url ? (
-              <span className="brand-beside-logo pointer-events-none absolute right-full top-1/2 mr-2 -translate-y-1/2 text-right md:mr-5">
+              <span className="brand-beside-logo text-right">
                 <span className="logo-type block text-[13px] font-semibold tracking-[0.14em] text-rose md:text-[2.15rem]">
                   {(settings.brand_name || "SOWNDY STYLE STUDIO").split(" ")[0]}
                 </span>
@@ -44,6 +43,7 @@ export function Header() {
                 </span>
               </span>
             ) : null}
+            <Logo className="h-16 max-w-[200px] text-2xl md:h-24 md:max-w-[340px] md:text-4xl" />
           </Link>
         </div>
         <div className="absolute right-4 top-3 flex items-center gap-2 md:top-4">
