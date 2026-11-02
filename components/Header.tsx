@@ -35,7 +35,7 @@ export function Header() {
           >
             {settings.logo_url ? (
               <span className="brand-beside-logo text-right">
-                <span className="logo-type block text-[13px] font-semibold tracking-[0.14em] text-rose md:text-[2.15rem]">
+                <span className="logo-type block text-[15px] font-semibold tracking-[0.14em] text-rose md:text-[2.4rem]">
                   {(settings.brand_name || "SOWNDY STYLE STUDIO").split(" ")[0]}
                 </span>
                 <span className="block font-sans text-xs font-bold tracking-[0.16em] text-rose md:text-xl">
