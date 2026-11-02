@@ -44,8 +44,13 @@ export default function SettingsPage() {
           onChange={async (e) => {
             const file = e.target.files?.[0];
             if (!file) return;
-            const [url] = await uploadPhotos([file]);
-            set("logo_url", url);
+            setError("");
+            try {
+              const [url] = await uploadPhotos([file]);
+              set("logo_url", url);
+            } catch (err) {
+              setError(err instanceof Error ? err.message : "Could not upload logo");
+            }
           }}
         />
         <span className="text-xs text-muted">Upload from phone gallery or computer. This replaces the text logo in the header.</span>
@@ -98,12 +103,17 @@ export default function SettingsPage() {
         UPI QR photo
         <input
           type="file"
-          accept="image/*"
+          accept="image/*,.jpg,.jpeg,.png,.webp,.heic,.heif"
           onChange={async (e) => {
             const file = e.target.files?.[0];
             if (!file) return;
-            const [url] = await uploadPhotos([file]);
-            set("upi_qr_url", url);
+            setError("");
+            try {
+              const [url] = await uploadPhotos([file]);
+              set("upi_qr_url", url);
+            } catch (err) {
+              setError(err instanceof Error ? err.message : "Could not upload scanner photo");
+            }
           }}
         />
       </label>
