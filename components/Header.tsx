@@ -24,18 +24,13 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-gold/30 bg-cream/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
-        <Link href="/" onClick={() => setOpen(false)} aria-label={settings.brand_name}>
-          <Logo />
-        </Link>
-        <nav className="hidden items-center gap-5 text-sm font-medium md:flex">
-          {NAV_LINKS.map((link) => (
-            <Link key={link.href} href={link.href} className="text-ink/80 hover:text-rose">
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-        <div className="flex items-center gap-2">
+      <div className="relative mx-auto max-w-6xl px-4 py-4">
+        <div className="flex justify-center">
+          <Link href="/" onClick={() => setOpen(false)} aria-label={settings.brand_name} className="block">
+            <Logo className="h-16 max-w-[240px] text-2xl md:h-24 md:max-w-[340px] md:text-4xl" />
+          </Link>
+        </div>
+        <div className="absolute right-4 top-4 flex items-center gap-2">
           {ready && isAdmin && (
             <button
               type="button"
@@ -59,6 +54,13 @@ export function Header() {
             Menu
           </button>
         </div>
+        <nav className="mt-3 hidden items-center justify-center gap-5 text-sm font-medium md:flex">
+          {NAV_LINKS.map((link) => (
+            <Link key={link.href} href={link.href} className="text-ink/80 hover:text-rose">
+              {link.label}
+            </Link>
+          ))}
+        </nav>
       </div>
       {open && (
         <nav className="grid gap-1 border-t border-gold/20 bg-cream px-4 py-3 md:hidden">

@@ -15,13 +15,13 @@ export function Logo({ className = "" }: { className?: string }) {
       <img
         src={settings.logo_url}
         alt={name}
-        className={`h-10 w-auto max-w-[180px] object-contain md:h-12 ${className}`}
+        className={`w-auto object-contain ${className || "h-8 max-w-[140px]"}`}
       />
     );
   }
 
   return (
-    <span className={`logo-type leading-tight ${className}`}>
+    <span className={`logo-type leading-tight ${className || "text-base"}`}>
       <span className="block text-[1.15em] font-semibold tracking-[0.28em] text-rose">{first}</span>
       <span className="block text-[0.58em] font-medium tracking-[0.42em] text-ink/80">{rest}</span>
     </span>
