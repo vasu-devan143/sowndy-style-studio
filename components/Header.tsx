@@ -39,7 +39,7 @@ export function Header() {
           ) : null}
           <div className="-mt-1 flex justify-center">
             <Link href="/" onClick={() => setOpen(false)} aria-label={settings.brand_name}>
-              <Logo className="h-16 max-w-[140px] text-2xl" />
+              <Logo className="h-[4.5rem] max-w-[165px] text-2xl" />
             </Link>
           </div>
         </div>
@@ -60,7 +60,7 @@ export function Header() {
                 </span>
               </span>
             ) : null}
-            <Logo className="h-24 max-w-[340px] text-4xl" />
+            <Logo className="h-28 max-w-[380px] text-4xl" />
           </Link>
         </div>
         <div className="absolute right-4 top-3 flex items-center gap-2 md:top-4">
