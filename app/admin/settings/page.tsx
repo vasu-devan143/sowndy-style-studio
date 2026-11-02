@@ -84,6 +84,9 @@ export default function SettingsPage() {
               Customer Order on WhatsApp buttons use this number. Include country code, without spaces.
             </span>
           ) : null}
+          {key === "phone" ? (
+            <span className="text-xs text-muted">Shown to visitors. Tapping Phone on the site starts a call.</span>
+          ) : null}
           {key === "instagram" || key === "youtube" ? (
             <span className="text-xs text-muted">
               Shown to visitors on phones and computers. Paste the full https link to your page.

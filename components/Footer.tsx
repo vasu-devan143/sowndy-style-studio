@@ -6,7 +6,7 @@ import { NAV_LINKS } from "@/lib/brand";
 import { useAuth } from "@/lib/auth";
 import { useStore } from "@/lib/store";
 import { Logo } from "./Logo";
-import { PublicSocialLinks } from "./PublicSocialLinks";
+import { PublicContactLinks } from "./PublicContactLinks";
 
 export function Footer() {
   const { settings } = useStore();
@@ -27,9 +27,7 @@ export function Footer() {
           ))}
         </div>
         <div className="text-sm">
-          <p>Phone: {settings.phone}</p>
-          <p>WhatsApp: {settings.whatsapp}</p>
-          <PublicSocialLinks className="mt-3 grid gap-2 pb-16 md:pb-0" />
+          <PublicContactLinks className="grid gap-2 pb-16 md:pb-0" />
           {isAdmin && (
             <p className="mt-4 text-xs">
               <button

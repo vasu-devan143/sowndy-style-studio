@@ -9,7 +9,7 @@ import { useCart } from "@/lib/cart";
 import { useStore } from "@/lib/store";
 import { CouponBox } from "./CouponBox";
 import { Logo } from "./Logo";
-import { PublicSocialLinks } from "./PublicSocialLinks";
+import { PublicContactLinks } from "./PublicContactLinks";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -74,6 +74,10 @@ export function Header() {
           ))}
         </nav>
         <CouponBox />
+        <PublicContactLinks
+          className="mx-auto mt-3 grid max-w-3xl grid-cols-2 gap-2 sm:grid-cols-4"
+          linkClassName="rounded-full border border-rose/30 bg-white px-3 py-2 text-center text-sm font-semibold text-rose"
+        />
       </div>
       {open && (
         <nav className="grid gap-1 border-t border-gold/20 bg-cream px-4 py-3 md:hidden">
@@ -87,7 +91,7 @@ export function Header() {
               {link.label}
             </Link>
           ))}
-          <PublicSocialLinks
+          <PublicContactLinks
             className="mt-2 grid gap-2"
             linkClassName="rounded-xl px-3 py-3 text-base font-semibold text-rose hover:bg-cream-dark"
           />
