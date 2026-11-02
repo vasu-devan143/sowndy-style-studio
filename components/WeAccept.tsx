@@ -6,7 +6,7 @@ export function WeAccept() {
       </p>
       <div className="mt-3 flex flex-wrap items-center gap-3">
         <img src="/payments/gpay.svg" alt="GPay" className="h-9 w-auto rounded-md border border-gold/30 bg-white p-1" />
-        <img src="/payments/phonepe.svg" alt="PhonePe" className="h-9 w-auto rounded-md border border-gold/30 bg-white p-0.5" />
+        <img src="/payments/phonepe.svg" alt="PhonePe" className="h-9 w-9 rounded-md bg-white object-contain p-0.5" />
         <img src="/payments/upi.svg" alt="UPI" className="h-9 w-auto rounded-md border border-gold/30 bg-white p-1" />
       </div>
     </div>
