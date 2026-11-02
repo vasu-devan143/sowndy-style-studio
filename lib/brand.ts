@@ -15,7 +15,7 @@ export const BRAND = {
 
 export const SHOP_CATEGORIES = [
   { slug: "saree", label: "Sarees", href: "/sarees" },
-  { slug: "saree-dhoti", label: "Saree Dhoti", href: "/saree-dhoti" },
+  { slug: "saree-dhoti", label: "Saree Dhoti (சுடிதார்)", href: "/saree-dhoti" },
   {
     slug: "saree-pre-pleating",
     label: "Saree Pre-Pleating",
@@ -34,7 +34,7 @@ export type CategorySlug = (typeof CATEGORIES)[number]["slug"];
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/sarees", label: "Sarees" },
-  { href: "/saree-dhoti", label: "Saree Dhoti" },
+  { href: "/saree-dhoti", label: "Saree Dhoti (சுடிதார்)" },
   { href: "/saree-pre-pleating", label: "Saree Pre-Pleating" },
   { href: "/jewelry", label: "Jewelry" },
   { href: "/chudidar", label: "Chudidar" },
