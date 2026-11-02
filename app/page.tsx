@@ -56,7 +56,7 @@ export default function HomePage() {
 
       <section>
         <h2 className="mb-4 text-3xl">Shop by category</h2>
-        <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-3">
           {SHOP_CATEGORIES.map((cat) => {
             const cover = products.find((p) => p.category === cat.slug);
             return (
