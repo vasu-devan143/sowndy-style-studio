@@ -4,12 +4,13 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import { HeartButton } from "@/components/HeartButton";
+import { ProductPrice } from "@/components/ProductPrice";
 import { PaymentBox } from "@/components/PaymentBox";
 import { SafeImage } from "@/components/SafeImage";
 import { StockBadge } from "@/components/StockBadge";
 import { WhatsAppOrderButton } from "@/components/WhatsAppOrderButton";
 import { useCart } from "@/lib/cart";
-import { inr, waLink } from "@/lib/format";
+import { waLink } from "@/lib/format";
 import { useStore } from "@/lib/store";
 import { stockStatus } from "@/lib/types";
 
@@ -54,7 +55,11 @@ export default function ProductPage() {
           <h1 className="text-4xl">{product.name}</h1>
           <HeartButton productId={product.id} className="mt-1 text-2xl text-rose" />
         </div>
-        <p className="text-2xl font-semibold text-rose">{inr(product.price)}</p>
+        <ProductPrice
+          price={product.price}
+          originalPrice={product.original_price}
+          className="flex flex-wrap items-baseline gap-3 text-2xl"
+        />
         <p className="text-muted">{product.description}</p>
         <ul className="text-sm">
           <li>Fabric: {product.fabric}</li>

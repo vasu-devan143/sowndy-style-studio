@@ -14,6 +14,7 @@ export function ProductForm({ product }: { product?: Product }) {
   const [name, setName] = useState(product?.name ?? "");
   const [category, setCategory] = useState<CategorySlug>(product?.category ?? "saree");
   const [price, setPrice] = useState(product?.price ?? 0);
+  const [originalPrice, setOriginalPrice] = useState(product?.original_price ?? 0);
   const [description, setDescription] = useState(product?.description ?? "");
   const [fabric, setFabric] = useState(product?.fabric ?? "");
   const [color, setColor] = useState(product?.color ?? "");
@@ -64,6 +65,7 @@ export function ProductForm({ product }: { product?: Product }) {
               name,
               category,
               price: Number(price),
+              original_price: Number(originalPrice),
               description,
               fabric,
               color,
@@ -98,8 +100,22 @@ export function ProductForm({ product }: { product?: Product }) {
         </select>
       </label>
       <label className="grid gap-1 text-sm">
-        Price (₹)
+        Original price (₹)
+        <input
+          type="number"
+          min={0}
+          className="rounded-xl border px-3 py-3"
+          value={originalPrice}
+          onChange={(e) => setOriginalPrice(Number(e.target.value))}
+        />
+        <span className="text-xs text-muted">
+          Optional. Example 1200. Shown with a line through it when the sale price is lower.
+        </span>
+      </label>
+      <label className="grid gap-1 text-sm">
+        Sale price (₹)
         <input type="number" min={0} className="rounded-xl border px-3 py-3" value={price} onChange={(e) => setPrice(Number(e.target.value))} />
+        <span className="text-xs text-muted">The price the customer pays. Example 1000.</span>
       </label>
       <label className="grid gap-1 text-sm">
         Coupon code for this product

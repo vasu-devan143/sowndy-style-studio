@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCart } from "@/lib/cart";
-import { inr } from "@/lib/format";
+import { ProductPrice } from "@/components/ProductPrice";
 import type { Product } from "@/lib/types";
 import { stockStatus } from "@/lib/types";
 import { HeartButton } from "./HeartButton";
@@ -46,7 +46,7 @@ export function ProductCard({ product }: { product: Product }) {
           )}
           <StockBadge qty={product.stock_quantity} />
         </div>
-        <p className="text-lg font-semibold text-rose">{inr(product.price)}</p>
+        <ProductPrice price={product.price} originalPrice={product.original_price} className="flex flex-wrap items-baseline gap-2 text-lg" />
         {sold ? (
           <Link
             href={`/product/${product.id}`}

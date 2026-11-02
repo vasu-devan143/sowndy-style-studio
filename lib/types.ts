@@ -11,6 +11,7 @@ export type Product = {
   name: string;
   category: CategorySlug;
   price: number;
+  original_price: number;
   description: string;
   fabric: string;
   color: string;

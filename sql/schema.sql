@@ -19,6 +19,7 @@ create table if not exists public.products (
   name text not null,
   category text not null check (category in ('saree', 'saree-dhoti', 'chudidar', 'saree-pre-pleating', 'jewelry')),
   price numeric not null default 0,
+  original_price numeric not null default 0,
   description text not null default '',
   fabric text not null default '',
   color text not null default '',

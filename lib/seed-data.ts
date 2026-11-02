@@ -23,6 +23,7 @@ export const seedProducts: Product[] = [
     id: "p1",
     name: "Banarasi Silk Saree — Rose Gold",
     category: "saree",
+    original_price: 0,
     price: 4890,
     description:
       "A festive Banarasi silk saree with a soft rose-gold weave and wide zari border. Ready for wedding functions and temple visits.",
@@ -42,6 +43,7 @@ export const seedProducts: Product[] = [
     id: "p2",
     name: "Kanchipuram Bridal Saree — Maroon",
     category: "saree",
+    original_price: 0,
     price: 12990,
     description:
       "Heavy Kanchipuram silk in deep maroon with gold temple border. Best for bridal and reception wear.",
@@ -61,6 +63,7 @@ export const seedProducts: Product[] = [
     id: "p3",
     name: "Cotton Handloom Saree — Ivory",
     category: "saree",
+    original_price: 0,
     price: 1890,
     description:
       "Light daily-wear handloom cotton saree. Soft on the skin and easy to drape for office or casual outings.",
@@ -79,6 +82,7 @@ export const seedProducts: Product[] = [
     id: "p4",
     name: "Anarkali Chudithar Set — Mint",
     category: "chudidar",
+    original_price: 0,
     price: 2490,
     description:
       "Flowy mint Anarkali with matching Chudithar and dupatta. Comfortable georgette, nice for family functions.",
@@ -98,6 +102,7 @@ export const seedProducts: Product[] = [
     id: "p5",
     name: "Soft Silk Chudithar — Peach",
     category: "chudidar",
+    original_price: 0,
     price: 1690,
     description:
       "Simple peach silk-blend kurta set. Sold out in this colour — customers can still see it and message you.",
@@ -116,6 +121,7 @@ export const seedProducts: Product[] = [
     id: "p6",
     name: "Ready Pre-Pleated Saree — Navy",
     category: "saree-pre-pleating",
+    original_price: 0,
     price: 3290,
     description:
       "Ready-to-wear pre-pleated saree. Hook the blouse, clip the pallu, and go. Perfect if you do not want to drape from scratch.",
