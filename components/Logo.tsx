@@ -12,14 +12,14 @@ export function Logo({ className = "" }: { className?: string }) {
   if (settings.logo_url?.length) {
     return (
       <span className="logo-frame">
-        <span className="logo-frame-inner">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={settings.logo_url}
-            alt={name}
-            className={`w-auto object-contain ${className || "h-8 max-w-[140px]"}`}
-          />
-        </span>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/payments/logo-leaves.svg" alt="" className="logo-leaves" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={settings.logo_url}
+          alt={name}
+          className={`relative z-[1] w-auto object-contain ${className || "h-8 max-w-[140px]"}`}
+        />
       </span>
     );
   }
