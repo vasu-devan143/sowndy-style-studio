@@ -7,6 +7,6 @@ export default function ChudidarPage() {
   const { products, ready } = useStore();
   if (!ready) return <p>Loading…</p>;
   return (
-    <ProductGrid title="Chudidar" products={products.filter((p) => p.category === "chudidar")} />
+    <ProductGrid title="சுடிதார்" products={products.filter((p) => p.category === "chudidar")} />
   );
 }

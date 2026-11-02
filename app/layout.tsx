@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     default: BRAND.name,
     template: `%s | ${BRAND.name}`,
   },
-  description: `${BRAND.name} — sarees, chudidar and ready-to-wear pre-pleated sarees. Order on WhatsApp.`,
+  description: `${BRAND.name} — sarees, சுடிதார் and ready-to-wear pre-pleated sarees. Order on WhatsApp.`,
   openGraph: {
     title: BRAND.name,
     description: BRAND.tagline,
