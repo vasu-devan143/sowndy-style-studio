@@ -48,6 +48,23 @@ h3,
   opacity: 1 !important;
 }
 
+.logo-frame {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 9999px;
+  background: conic-gradient(from 28deg, #c4a574, #8b3a4a, #f3e6d8, #c4a574 72%, #8b3a4a, #c4a574);
+  box-shadow: 0 0 0 1px rgba(196, 165, 116, 0.55);
+}
+
+.logo-frame-inner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: #fbf6f0;
+  padding: 3px;
+}
+
 @media print {
   .no-print {
     display: none !important;
