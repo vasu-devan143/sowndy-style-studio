@@ -24,7 +24,7 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-40 overflow-visible border-b border-gold/30 bg-cream/95 backdrop-blur">
+    <header className="relative overflow-visible border-b border-gold/30 bg-cream/95">
       <div className="relative mx-auto max-w-6xl overflow-visible px-3 py-3 md:px-4 md:py-4">
         <div className="relative md:hidden">
           {settings.logo_url ? (
