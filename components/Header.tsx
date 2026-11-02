@@ -26,7 +26,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 overflow-visible border-b border-gold/30 bg-cream/95 backdrop-blur">
       <div className="relative mx-auto max-w-6xl overflow-visible px-3 py-3 md:px-4 md:py-4">
-        <div className="relative h-[4.25rem] md:hidden">
+        <div className="relative md:hidden">
           {settings.logo_url ? (
             <span className="brand-beside-logo absolute left-0 top-1/2 z-10 -translate-y-1/2 text-left">
               <span className="logo-type block text-lg font-semibold tracking-[0.14em] text-rose">
@@ -37,14 +37,11 @@ export function Header() {
               </span>
             </span>
           ) : null}
-          <Link
-            href="/"
-            onClick={() => setOpen(false)}
-            aria-label={settings.brand_name}
-            className="absolute top-0 left-1/2 z-0 -translate-x-1/2 -translate-y-1"
-          >
-            <Logo className="h-16 max-w-[140px] text-2xl" />
-          </Link>
+          <div className="-mt-1 flex justify-center">
+            <Link href="/" onClick={() => setOpen(false)} aria-label={settings.brand_name}>
+              <Logo className="h-16 max-w-[140px] text-2xl" />
+            </Link>
+          </div>
         </div>
         <div className="hidden justify-center md:flex">
           <Link
