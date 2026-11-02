@@ -38,7 +38,7 @@ export function Header() {
                 <span className="logo-type block text-[13px] font-semibold tracking-[0.14em] text-rose md:text-[2.15rem]">
                   {(settings.brand_name || "SOWNDY STYLE STUDIO").split(" ")[0]}
                 </span>
-                <span className="logo-type block text-[10px] font-medium tracking-[0.18em] text-ink/80 md:text-lg">
+                <span className="block font-sans text-[10px] font-semibold tracking-[0.22em] text-ink md:text-lg">
                   {(settings.brand_name || "SOWNDY STYLE STUDIO").split(" ").slice(1).join(" ")}
                 </span>
               </span>
