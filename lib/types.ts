@@ -17,6 +17,7 @@ export type Product = {
   sizes: string;
   stock_quantity: number;
   is_new: boolean;
+  coupon_code: string;
   created_at: string;
   images: string[];
 };
@@ -76,5 +77,6 @@ export function stockStatus(qty: number): StockStatus {
 export function categoryLabel(slug: CategorySlug) {
   if (slug === "saree") return "Sarees";
   if (slug === "chudidar") return "Chudidar";
+  if (slug === "jewelry") return "Jewelry";
   return "Saree Pre-Pleating";
 }

@@ -63,7 +63,7 @@ export default function SettingsPage() {
         [
           ["brand_name", "Brand name"],
           ["phone", "Phone"],
-          ["whatsapp", "WhatsApp number with country code"],
+          ["whatsapp", "WhatsApp number with country code (example: 91XXXXXXXXXX)"],
           ["instagram", "Instagram link"],
           ["youtube", "YouTube link"],
           ["upi_id", "UPI ID"],
@@ -79,6 +79,11 @@ export default function SettingsPage() {
           ) : (
             <input className="rounded-xl border px-3 py-3" value={form[key]} onChange={(e) => set(key, e.target.value)} />
           )}
+          {key === "whatsapp" ? (
+            <span className="text-xs text-muted">
+              Customer Order on WhatsApp buttons use this number. Include country code, without spaces.
+            </span>
+          ) : null}
         </label>
       ))}
       <label className="grid gap-1 text-sm">

@@ -6,6 +6,10 @@ export function inr(amount: number) {
   }).format(amount || 0);
 }
 
+export function normalizeCoupon(value: string) {
+  return value.trim().toUpperCase().replace(/\s+/g, "");
+}
+
 export function digitsOnly(value: string) {
   return value.replace(/\D/g, "");
 }

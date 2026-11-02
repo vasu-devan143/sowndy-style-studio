@@ -20,6 +20,7 @@ export function ProductForm({ product }: { product?: Product }) {
   const [sizes, setSizes] = useState(product?.sizes ?? "Free size");
   const [stock, setStock] = useState(product?.stock_quantity ?? 1);
   const [isNew, setIsNew] = useState(product?.is_new ?? false);
+  const [coupon, setCoupon] = useState(product?.coupon_code ?? "");
   const [images, setImages] = useState<string[]>(product?.images ?? []);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -69,6 +70,7 @@ export function ProductForm({ product }: { product?: Product }) {
               sizes,
               stock_quantity: Number(stock),
               is_new: isNew,
+              coupon_code: coupon,
               images,
             },
             product?.id,
@@ -98,6 +100,20 @@ export function ProductForm({ product }: { product?: Product }) {
       <label className="grid gap-1 text-sm">
         Price (₹)
         <input type="number" min={0} className="rounded-xl border px-3 py-3" value={price} onChange={(e) => setPrice(Number(e.target.value))} />
+      </label>
+      <label className="grid gap-1 text-sm">
+        Coupon code for this product
+        <input
+          className="rounded-xl border px-3 py-3 uppercase"
+          value={coupon}
+          onChange={(e) => setCoupon(e.target.value)}
+          placeholder="Example: SS204"
+          autoComplete="off"
+        />
+        <span className="text-xs text-muted">
+          Optional. Share this on Instagram or WhatsApp. The customer types it on the website to open this
+          product. Each product needs its own code.
+        </span>
       </label>
       <label className="grid gap-1 text-sm">
         About this item

@@ -31,6 +31,7 @@ export const seedProducts: Product[] = [
     sizes: "Free size",
     stock_quantity: 8,
     is_new: true,
+    coupon_code: "",
     created_at: now,
     images: [
       "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1200&q=80",
@@ -49,6 +50,7 @@ export const seedProducts: Product[] = [
     sizes: "Free size",
     stock_quantity: 2,
     is_new: false,
+    coupon_code: "",
     created_at: "2026-10-12T10:00:00.000Z",
     images: [
       "https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&w=1200&q=80",
@@ -67,6 +69,7 @@ export const seedProducts: Product[] = [
     sizes: "Free size",
     stock_quantity: 12,
     is_new: false,
+    coupon_code: "",
     created_at: "2026-09-28T10:00:00.000Z",
     images: [
       "https://images.unsplash.com/photo-1605763240004-7e1133101672?auto=format&fit=crop&w=1200&q=80",
@@ -84,6 +87,7 @@ export const seedProducts: Product[] = [
     sizes: "S, M, L, XL",
     stock_quantity: 6,
     is_new: true,
+    coupon_code: "",
     created_at: "2026-10-18T10:00:00.000Z",
     images: [
       "https://images.unsplash.com/photo-1617019114583-affb34d1b3cd?auto=format&fit=crop&w=1200&q=80",
@@ -102,6 +106,7 @@ export const seedProducts: Product[] = [
     sizes: "M, L",
     stock_quantity: 0,
     is_new: false,
+    coupon_code: "",
     created_at: "2026-09-10T10:00:00.000Z",
     images: [
       "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=1200&q=80",
@@ -119,6 +124,7 @@ export const seedProducts: Product[] = [
     sizes: "Free size (upto 42 waist)",
     stock_quantity: 5,
     is_new: true,
+    coupon_code: "",
     created_at: "2026-10-22T10:00:00.000Z",
     images: [
       "https://images.unsplash.com/photo-1602424246749-0d5cd0466a5a?auto=format&fit=crop&w=1200&q=80",

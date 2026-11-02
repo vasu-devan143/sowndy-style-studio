@@ -35,8 +35,8 @@ export default function HomePage() {
           <p className="text-sm tracking-[0.25em] text-gold uppercase">Women&apos;s ethnic wear</p>
           <h1 className="text-4xl leading-tight md:text-5xl">{settings.brand_name}</h1>
           <p className="text-muted">
-            Sarees, chudidar and ready-to-wear pre-pleated sarees. See a piece you love? Add it to
-            your bag and order on WhatsApp.
+            Sarees, chudidar, ready-to-wear pre-pleated sarees, and jewelry. See a piece you love?
+            Add it to your bag and order on WhatsApp.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link href="/sarees" className="rounded-full bg-rose px-5 py-3 text-center font-semibold text-white">
@@ -56,7 +56,7 @@ export default function HomePage() {
 
       <section>
         <h2 className="mb-4 text-3xl">Shop by category</h2>
-        <div className="grid gap-3 md:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {CATEGORIES.map((cat) => {
             const cover = products.find((p) => p.category === cat.slug);
             return (

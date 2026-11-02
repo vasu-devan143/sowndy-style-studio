@@ -38,6 +38,7 @@ export default function AdminProductsPage() {
               <p className="font-medium">{p.name}</p>
               <p className="text-sm text-muted">
                 {categoryLabel(p.category)} · {inr(p.price)} · stock {p.stock_quantity}
+                {p.coupon_code ? ` · coupon ${p.coupon_code}` : ""}
               </p>
               <StockBadge qty={p.stock_quantity} />
               <div className="mt-2 flex flex-wrap gap-2">

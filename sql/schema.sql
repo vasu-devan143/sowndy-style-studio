@@ -17,7 +17,7 @@ create table if not exists public.settings (
 create table if not exists public.products (
   id uuid primary key default gen_random_uuid(),
   name text not null,
-  category text not null check (category in ('saree', 'chudidar', 'saree-pre-pleating')),
+  category text not null check (category in ('saree', 'chudidar', 'saree-pre-pleating', 'jewelry')),
   price numeric not null default 0,
   description text not null default '',
   fabric text not null default '',
@@ -25,8 +25,13 @@ create table if not exists public.products (
   sizes text not null default 'Free size',
   stock_quantity int not null default 0,
   is_new boolean not null default false,
+  coupon_code text not null default '',
   created_at timestamptz not null default now()
 );
+
+create unique index if not exists products_coupon_code_unique
+  on public.products (lower(coupon_code))
+  where coupon_code <> '';
 
 create table if not exists public.product_images (
   id uuid primary key default gen_random_uuid(),

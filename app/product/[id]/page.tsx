@@ -6,6 +6,7 @@ import { useMemo, useState } from "react";
 import { PaymentBox } from "@/components/PaymentBox";
 import { SafeImage } from "@/components/SafeImage";
 import { StockBadge } from "@/components/StockBadge";
+import { WhatsAppOrderButton } from "@/components/WhatsAppOrderButton";
 import { useCart } from "@/lib/cart";
 import { inr, waLink } from "@/lib/format";
 import { useStore } from "@/lib/store";
@@ -23,9 +24,7 @@ export default function ProductPage() {
   if (!product) return <p>This item is not in the shop anymore.</p>;
 
   const sold = stockStatus(product.stock_quantity) === "sold_out";
-  const pageUrl = typeof window !== "undefined" ? window.location.href : "";
-  const orderMsg = `Hi ${settings.brand_name}, I want to order:\n${product.name}\nPrice: ${inr(product.price)}\n${pageUrl}`;
-  const notifyMsg = `Hi ${settings.brand_name}, please notify me when this is back: ${product.name}`;
+  const notifyMsg = `Hi ${settings.brand_name}, please notify me when this is back: ${product.name}\n${typeof window !== "undefined" ? `${window.location.origin}/product/${product.id}` : ""}`;
 
   return (
     <div className="grid gap-8 md:grid-cols-2">
@@ -76,14 +75,7 @@ export default function ProductPage() {
             >
               Add to bag & bill
             </Link>
-            <a
-              href={waLink(settings.whatsapp, orderMsg)}
-              className="rounded-full bg-[#25D366] px-5 py-3 text-center font-semibold text-white"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Order on WhatsApp
-            </a>
+            <WhatsAppOrderButton product={product} settings={settings} />
             {settings.instagram && (
               <a
                 href={settings.instagram}

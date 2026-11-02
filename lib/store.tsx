@@ -13,7 +13,7 @@ import { fileExtension, isVideoFile } from "./media";
 import { defaultSettings, seedProducts, seedSales } from "./seed-data";
 import { getSupabase, isSupabaseConfigured } from "./supabase/client";
 import type { PaymentMode, Product, Sale, SaleItem, ShopSettings } from "./types";
-import { nextInvoiceNumber } from "./format";
+import { nextInvoiceNumber, normalizeCoupon } from "./format";
 
 const LS_KEY = "sowndy-shop-store-v1";
 
@@ -89,6 +89,7 @@ function mapProduct(
     sizes: String(row.sizes ?? ""),
     stock_quantity: Number(row.stock_quantity ?? 0),
     is_new: Boolean(row.is_new),
+    coupon_code: String(row.coupon_code ?? ""),
     created_at: String(row.created_at),
     images: images
       .filter((img) => img.product_id === row.id)
@@ -202,6 +203,15 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
 
   const saveProduct = useCallback(
     async (input: ProductInput, id?: string) => {
+      const coupon = normalizeCoupon(input.coupon_code ?? "");
+      const clash = products.find(
+        (p) => coupon && normalizeCoupon(p.coupon_code) === coupon && p.id !== id,
+      );
+      if (clash) {
+        throw new Error(`Coupon ${coupon} is already used on ${clash.name}`);
+      }
+      input = { ...input, coupon_code: coupon };
+
       if (usingDemo) {
         const demo = loadDemo();
         if (id) {
@@ -235,6 +245,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         sizes: input.sizes,
         stock_quantity: input.stock_quantity,
         is_new: input.is_new,
+        coupon_code: coupon,
       };
 
       let productId = id;
@@ -276,7 +287,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         };
       }
     },
-    [refresh, usingDemo],
+    [products, refresh, usingDemo],
   );
 
   const deleteProduct = useCallback(
