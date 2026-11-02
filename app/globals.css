@@ -42,6 +42,12 @@ h3,
   font-family: var(--font-cormorant), serif;
 }
 
+.brand-beside-logo {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
 @media print {
   .no-print {
     display: none !important;

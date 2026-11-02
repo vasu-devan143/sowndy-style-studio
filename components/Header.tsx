@@ -24,26 +24,26 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-gold/30 bg-cream/95 backdrop-blur">
-      <div className="relative mx-auto max-w-6xl px-4 py-3 md:py-4">
-        <div className="flex justify-center">
+    <header className="sticky top-0 z-40 overflow-visible border-b border-gold/30 bg-cream/95 backdrop-blur">
+      <div className="relative mx-auto max-w-6xl overflow-visible px-3 py-3 md:px-4 md:py-4">
+        <div className="flex items-center justify-start pr-16 md:justify-center md:pr-0">
           <Link
             href="/"
             onClick={() => setOpen(false)}
             aria-label={settings.brand_name}
-            className="relative flex max-w-full items-center justify-center gap-2 md:block"
+            className="relative flex min-w-0 items-center gap-2 overflow-visible md:block"
           >
             {settings.logo_url ? (
-              <span className="pointer-events-none shrink-0 text-right md:absolute md:right-full md:top-1/2 md:mr-5 md:-translate-y-1/2">
-                <span className="logo-type block text-[11px] font-semibold tracking-[0.14em] text-rose sm:text-lg md:text-3xl">
+              <span className="brand-beside-logo pointer-events-none shrink-0 text-right md:absolute md:right-full md:top-1/2 md:mr-5 md:-translate-y-1/2">
+                <span className="logo-type block text-[11px] font-semibold tracking-[0.12em] text-rose md:text-3xl">
                   {(settings.brand_name || "SOWNDY STYLE STUDIO").split(" ")[0]}
                 </span>
-                <span className="logo-type block text-[8px] font-medium tracking-[0.2em] text-ink/80 sm:text-[11px] md:text-base">
+                <span className="logo-type block text-[8px] font-medium tracking-[0.16em] text-ink/80 md:text-base">
                   {(settings.brand_name || "SOWNDY STYLE STUDIO").split(" ").slice(1).join(" ")}
                 </span>
               </span>
             ) : null}
-            <Logo className="h-14 max-w-[140px] text-2xl md:h-24 md:max-w-[340px] md:text-4xl" />
+            <Logo className="h-12 max-w-[96px] shrink-0 text-2xl md:h-24 md:max-w-[340px] md:text-4xl" />
           </Link>
         </div>
         <div className="absolute right-4 top-3 flex items-center gap-2 md:top-4">
