@@ -49,13 +49,13 @@ begin
     end if;
 
     v_subtotal := v_subtotal + (v_product.price * v_qty);
-    v_items := v_items || jsonb_build_object(
+    v_items := v_items || jsonb_build_array(jsonb_build_object(
       'product_id', v_product.id,
       'product_name', v_product.name,
       'quantity', v_qty,
       'unit_price', v_product.price,
       'line_total', v_product.price * v_qty
-    );
+    ));
   end loop;
 
   insert into public.sales (
